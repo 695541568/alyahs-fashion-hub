@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alyah’s Fashion Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">Alyah’s Fashion Hub</div>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#shop">Shop</a></li>
+
+        <li class="dropdown">
+            <a href="#">Payment ▾</a>
+            <div class="dropdown-content">
+                <p>M-Pesa: 0748 863 304</p>
+                <p>Airtel: 0694 339 402</p>
+                <p>Voda Lipa: 59996557</p>
+                <p>CRDB: 0152988051600</p>
+                <p>NMB: 21810033532</p>
+            </div>
+        </li>
+
+        <li class="dropdown">
+            <a href="#">Contact ▾</a>
+            <div class="dropdown-content">
+                <p>Voda: 0748 863 304</p>
+                <p>Airtel: 0694 339 402</p>
+                <p>WhatsApp: 0748 863 304</p>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<!-- HEADER -->
+<header id="home">
+    <h1>Alyah’s Fashion Hub</h1>
+    <p class="tagline">Elegant Fashion • Modern Women Wear</p>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <h2>Elegant Fashion for Every Woman</h2>
+    <p>Order directly via WhatsApp anywhere in Tanzania</p>
+    <a class="btn" href="https://wa.me/255748863304" target="_blank">
+        Order via WhatsApp
+    </a>
+    <p class="delivery">🚚 On-Time Delivery Anywhere in Tanzania</p>
+</section>
+
+<!-- SHOP -->
+<section class="shop" id="shop">
+    <h2>Our Products</h2>
+
+    <div class="products">
+
+        <!-- PRODUCT -->
+        <div class="product" data-name="Batiki Dress">
+            <img src="images/batiki.jpg"
+                 data-images="images/batiki.jpg,images/batiki-2.jpg,images/batiki-3.jpg"
+                 onclick="openViewer(this)">
+            <h3>Batiki Dress</h3>
+            <p class="price">
+                Retail: TZS 35,000<br>
+                <span class="wholesale">Wholesale (≥3): TZS 32,000</span>
+            </p>
+            <button class="btn" onclick="orderNow(this)">Order Now</button>
+        </div>
+
+        <div class="product" data-name="Casual Dress">
+            <img src="images/casual.jpg"
+                 data-images="images/casual.jpg,images/casual-2.jpg"
+                 onclick="openViewer(this)">
+            <h3>Casual Dress</h3>
+            <p class="price">
+                Retail: TZS 30,000<br>
+                <span class="wholesale">Wholesale (≥3): TZS 27,000</span>
+            </p>
+            <button class="btn" onclick="orderNow(this)">Order Now</button>
+        </div>
+
+        <div class="product" data-name="Rica Dress">
+            <img src="images/ricadress.jpg"
+                 data-images="images/ricadress.jpg,images/ricadress-2.jpg"
+                 onclick="openViewer(this)">
+            <h3>Rica Dress</h3>
+            <p class="price">
+                Retail: TZS 40,000<br>
+                <span class="wholesale">Wholesale (≥3): TZS 37,000</span>
+            </p>
+            <button class="btn" onclick="orderNow(this)">Order Now</button>
+        </div>
+
+        <div class="product" data-name="Two Piece Outfit">
+            <img src="images/two-piece.jpg"
+                 data-images="images/two-piece.jpg,images/two-piece-2.jpg"
+                 onclick="openViewer(this)">
+            <h3>Two Piece Outfit</h3>
+            <p class="price">
+                Retail: TZS 38,000<br>
+                <span class="wholesale">Wholesale (≥3): TZS 35,000</span>
+            </p>
+            <button class="btn" onclick="orderNow(this)">Order Now</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- FULLSCREEN VIEWER -->
+<div id="viewer" class="viewer hidden">
+    <span class="close" onclick="closeViewer()">✕</span>
+    <img id="viewerImage">
+</div>
+
+<!-- SCRIPT -->
+<script>
+let slideInterval;
+let images = [];
+let index = 0;
+
+function openViewer(img) {
+    clearInterval(slideInterval);
+
+    images = img.dataset.images.split(",");
+    index = 0;
+
+    document.getElementById("viewer").classList.remove("hidden");
+    document.getElementById("viewerImage").src = images[index];
+
+    slideInterval = setInterval(() => {
+        index = (index + 1) % images.length;
+        document.getElementById("viewerImage").src = images[index];
+    }, 2000);
+}
+
+function closeViewer() {
+    clearInterval(slideInterval);
+    document.getElementById("viewer").classList.add("hidden");
+}
+
+function orderNow(btn) {
+    const product = btn.closest(".product");
+    const name = product.dataset.name;
+    const image = product.querySelector("img").src;
+
+    const msg =
+        `NEW ORDER 🛍️%0AProduct: ${name}%0AImage: ${image}`;
+
+    window.open(`https://wa.me/255748863304?text=${msg}`, "_blank");
+}
+</script>
+<!-- FOOTER -->
+<footer class="footer">
+    <p>
+        Can’t find what you are looking for?<br>
+        <strong>Send a special request</strong>
+    </p>
+
+    <a class="whatsapp-footer"
+       href="https://wa.me/255748863304?text=Hello%20Alyah’s%20Fashion%20Hub,%20I%20have%20a%20special%20order%20request."
+       target="_blank">
+        <img src="images/whatsapp.png" alt="WhatsApp">
+        Send via WhatsApp
+    </a>
+</footer>
+
+</body>
+</html>
