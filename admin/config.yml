@@ -16,4 +16,3 @@ collections:
       - { label: "Retail Price", name: "retail", widget: "string" }
       - { label: "Wholesale Price", name: "wholesale", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
-
